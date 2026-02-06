@@ -1,0 +1,34 @@
+---
+interface Props {
+	tag: string;
+	withHref?: boolean;
+	theme?: 'default' | 'primary' | 'secondary';
+}
+
+const { tag, withHref, theme = 'default' } = Astro.props;
+
+const themeColors = {
+	default: {
+		base: 'bg-stone-600 text-white',
+		hover: 'bg-stone-500'
+	},
+	primary: {
+		base: 'bg-orange-600 text-white',
+		hover: 'bg-orange-500'
+	},
+	secondary: {
+		base: 'bg-blue-600 text-white',
+		hover: 'bg-blue-500'
+	}
+};
+
+const colors = themeColors[theme];
+---
+
+<span
+	class={`mb-2 mr-2 rounded-xl px-3 py-1 text-xs font-bold uppercase ${colors.base} group-hover:${colors.hover} ${
+		withHref ? `hover:${colors.hover}` : ''
+	}`}
+>
+	#{tag}
+</span>
