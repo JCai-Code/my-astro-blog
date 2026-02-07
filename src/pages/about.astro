@@ -1,0 +1,20 @@
+---
+// src/pages/about.astro
+const pageTitle = "about me";
+const skills = ["HTML", "CSS", "JavaScript", "Astro"];
+---
+
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <h1>{pageTitle}</h1>
+    <p>这是我的第一个 Astro 站点！</p>
+    
+    <ul>
+      {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
+  </body>
+</html>
