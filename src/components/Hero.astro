@@ -1,16 +1,20 @@
 ---
 import Section from './Section.astro';
 import Social from './Social.astro';
+import Typewriter from './Typewriter.astro';
 // const site = Astro.site;
 ---
 
 <Section>
 	<br />
-	<p class="pb-2 pt-6 text-4xl font-bold">Hello, JCai-Code Blog 🚀</p>
-	<div class="text-sm">
-		<p class="py-2">
-			这是我的第一个 astro 博客
-		</p>
+	<p class="pb-2 pt-6 text-4xl font-bold text-center">Hi, I'm James-Cai</p>
+	<div class="py-2">
+		<Typewriter 
+		baseText="I'm a " 
+		dynamicWords={["Developer", "DevOps"]}
+		speed={120} 
+		delay={500} 
+		/>
 	</div>
 	<div class="flex">
 		<Social href="https://github.com/#">

@@ -1,0 +1,105 @@
+---
+// src/components/Typewriter.astro
+interface Props {
+  baseText: string;    // 前面不动的文字，例如 "I am a "
+  dynamicWords: string[]; // 循环变换的单词，例如 ["Developer", "Designer", "Learner"]
+  speed?: number;      // 打字速度
+  deleteSpeed?: number; // 删除速度
+  delay?: number;      // 单词打完后的停留时间
+}
+
+const { 
+  baseText, 
+  dynamicWords, 
+  speed = 100, 
+  deleteSpeed = 50, 
+  delay = 1500 
+} = Astro.props;
+---
+
+<div class="typewriter-container">
+  <span class="base-text">{baseText}</span>
+  <span id="dynamic-text" class="dynamic-text"></span>
+  <span class="cursor">|</span>
+</div>
+
+<style>
+  .typewriter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 字体大小设置：这里改为 3rem (约 48px)，你可以根据需要调整 */
+    font-size: 3rem; 
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .base-text {
+    color: #333; /* 基础文字颜色 */
+    white-space: pre;
+  }
+
+  .dynamic-text {
+    color: #3b82f6; /* 动态单词颜色 (蓝色) */
+    white-space: pre;
+  }
+
+  .cursor {
+    color: #3b82f6;
+    margin-left: 4px;
+    animation: blink 0.7s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* 移动端适配 */
+  @media (max-width: 640px) {
+    .typewriter-container {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<script define:vars={{ dynamicWords, speed, deleteSpeed, delay }}>
+  const target = document.getElementById('dynamic-text');
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const currentWord = dynamicWords[wordIndex];
+    
+    if (isDeleting) {
+      // 删除逻辑
+      target.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      // 打字逻辑
+      target.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    // 确定下一帧的速度
+    let typeSpeed = isDeleting ? deleteSpeed : speed;
+
+    // 如果单词打完了
+    if (!isDeleting && charIndex === currentWord.length) {
+      typeSpeed = delay; // 停顿一下再删除
+      isDeleting = true;
+    } 
+    // 如果单词删完了
+    else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % dynamicWords.length; // 切换到下一个词
+      typeSpeed = 500; // 换词前稍微停顿
+    }
+
+    setTimeout(type, typeSpeed);
+  }
+
+  // 启动
+  if (target) type();
+</script>
