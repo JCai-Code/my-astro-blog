@@ -5,6 +5,8 @@ import vercelStatic from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
+
 const options = {
 	// Specify the theme to use or a custom theme json, in our case
 	// it will be a moonlight-II theme from
@@ -40,7 +42,11 @@ export default defineConfig({
 		remarkPlugins: [remarkReadingTime]
 	},
 
-	integrations: [react(), sitemap()],
+	integrations: [
+		icon(),
+		react(), 
+		sitemap()
+	],
 	output: 'static',
 
 	adapter: vercelStatic({

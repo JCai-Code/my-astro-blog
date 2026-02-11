@@ -1,23 +1,31 @@
 ---
 import Section from './Section.astro';
-import Social from './Social.astro';
 import Typewriter from './Typewriter.astro';
+import SkillTag from '@/components/SkillTag.astro';
+
 // const site = Astro.site;
 ---
 
 <Section>
 	<br />
-	<p class="pb-2 pt-6 text-4xl font-bold text-center">Hi, I'm James-Cai</p>
+	<p class="pb-2 pt-6 text-4xl font-bold text-center">Hi, Welcome to my blog</p>
 	<div class="py-2">
 		<Typewriter 
 		baseText="I'm a " 
 		dynamicWords={["Developer", "DevOps"]}
-		speed={120} 
+		speed={300} 
 		delay={500} 
 		/>
 	</div>
+	<div class="mt-0 flex flex-wrap justify-center gap-3 p-10 max-w-4xl mx-auto rounded-3xl my-8">
+			<SkillTag name="Linux" icon="simple-icons:linux" />
+			<SkillTag name="Python" icon="simple-icons:python" />
+			<SkillTag name="Kubernetes" icon="simple-icons:kubernetes" />
+			<SkillTag name="Docker" icon="simple-icons:docker" />
+			<SkillTag name="Shell" icon="lucide:square-terminal" />
+	</div>
 	<div class="flex">
-		<Social href="https://github.com/#">
+		<!-- <Social href="https://github.com/#">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="h-4 w-4"
@@ -29,6 +37,16 @@ import Typewriter from './Typewriter.astro';
 				></path>
 			</svg>
 		</Social>
+		<IconButton 
+			href="https://github.com/JCai-Code" 
+			icon="simple-icons:python" 
+			label="GitHub" 
+		/> -->
+		<!-- <IconButton 
+			href="mailto:example@gmail.com" 
+			icon="simple-icons:mail" 
+			label="Contact" 
+		/> -->
 		<!-- <Social href="https://www.linkedin.com/#">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
