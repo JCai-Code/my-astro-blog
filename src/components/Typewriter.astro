@@ -3,6 +3,7 @@
 interface Props {
   baseText: string;    // 前面不动的文字，例如 "I am a "
   dynamicWords: string[]; // 循环变换的单词，例如 ["Developer", "Designer", "Learner"]
+  suffixText?: string;   // 👈 新增：后缀文字，例如 " Engineer"
   speed?: number;      // 打字速度
   deleteSpeed?: number; // 删除速度
   delay?: number;      // 单词打完后的停留时间
@@ -11,6 +12,7 @@ interface Props {
 const { 
   baseText, 
   dynamicWords, 
+  suffixText = "", //默认为空
   speed = 100, 
   deleteSpeed = 50, 
   delay = 1500 
@@ -21,6 +23,7 @@ const {
   <span class="base-text">{baseText}</span>
   <span id="dynamic-text" class="dynamic-text"></span>
   <span class="cursor">|</span>
+  <span class="base-text">{suffixText}</span>
 </div>
 
 <style>
@@ -44,11 +47,14 @@ const {
     white-space: pre;
   }
 
-  .cursor {
-    color: #3b82f6;
-    margin-left: 4px;
-    animation: blink 0.7s infinite;
-  }
+.cursor {
+  color: #a855f7;
+  text-shadow: 0 0 8px rgba(168, 85, 247, 0.8); /* 增加霓虹发光 */
+  /* 如果不想要 "|" 符号，可以尝试把字体设为透明，
+     然后用 border-left 来做一个实心方块光标 */
+  /* border-left: 3px solid #a855f7; */
+  /* height: 1em; */
+}
 
   @keyframes blink {
     0%, 100% { opacity: 1; }

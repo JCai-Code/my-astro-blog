@@ -11,10 +11,11 @@ import SkillTag from '@/components/SkillTag.astro';
 	<p class="pb-2 pt-6 text-4xl font-bold text-center">Hi, Welcome to my blog</p>
 	<div class="py-2">
 		<Typewriter 
-		baseText="I'm a " 
+		baseText="a " 
 		dynamicWords={["Developer", "DevOps"]}
-		speed={300} 
-		delay={500} 
+		suffixText="Engineer"
+		speed={100} 
+		delay={2000} 
 		/>
 	</div>
 	<div class="mt-0 flex flex-wrap justify-center gap-3 p-10 max-w-4xl mx-auto rounded-3xl my-8">
@@ -22,6 +23,7 @@ import SkillTag from '@/components/SkillTag.astro';
 			<SkillTag name="Python" icon="simple-icons:python" />
 			<SkillTag name="Kubernetes" icon="simple-icons:kubernetes" />
 			<SkillTag name="Docker" icon="simple-icons:docker" />
+			<SkillTag name="AWS" icon="simple-icons:amazonwebservices"/>
 			<SkillTag name="Shell" icon="lucide:square-terminal" />
 	</div>
 	<div class="flex">
